@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UsersRepository extends JpaRepository<Users,Integer> {
+public interface LoanRepository extends JpaRepository<Loan,Integer> {
 
-    @Query(value = "SELECT * FROM public.users",
+    @Query(value = "SELECT * FROM public.loan",
             nativeQuery = true
     )
-    List<Users> showUsers();
+    List<Loan> showLoan();
 
 }

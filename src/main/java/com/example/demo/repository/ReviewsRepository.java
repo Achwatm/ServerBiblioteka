@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.dao.Loan;
-import com.example.demo.dao.Users;
+import com.example.demo.dao.Reviews;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UsersRepository extends JpaRepository<Users,Integer> {
+public interface ReviewsRepository extends JpaRepository<Reviews,Integer> {
 
-    @Query(value = "SELECT * FROM public.users",
+    @Query(value = "SELECT * FROM public.reviews",
             nativeQuery = true
     )
-    List<Users> showUsers();
+    List<Reviews> showReviews();
 
 }

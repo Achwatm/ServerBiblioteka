@@ -1,18 +1,20 @@
 package com.example.demo.dto;
 
 
+import com.example.demo.dao.Authors;
+
 public class BooksDto {
 
 
     private String title;
     private String description;
     private String type;
-    private AuthorsDto idAuthor;
+    private Authors idAuthor;
 
     public BooksDto() {
     }
 
-    public BooksDto(String title, String description, String type, AuthorsDto idAuthor) {
+    public BooksDto(String title, String description, String type, Authors idAuthor) {
         this.title = title;
         this.description = description;
         this.type = type;
@@ -44,11 +46,11 @@ public class BooksDto {
         this.type = type;
     }
 
-    public AuthorsDto getIdAuthor() {
+    public Authors getIdAuthor() {
         return idAuthor;
     }
 
-    public void setIdAuthor(AuthorsDto idAuthor) {
+    public void setIdAuthor(Authors idAuthor) {
         this.idAuthor = idAuthor;
     }
 }
