@@ -1,17 +1,20 @@
 package com.example.demo.dto;
 
 
+import com.example.demo.dao.Books;
+import com.example.demo.dao.Users;
+
 public class CommentsDto {
 
 
     private String contentComment;
-    private UsersDto idUser;
-    private BooksDto idBook;
+    private Users idUser;
+    private Books idBook;
 
     public CommentsDto() {
     }
 
-    public CommentsDto(String contentComment, UsersDto idUser, BooksDto idBook) {
+    public CommentsDto(String contentComment, Users idUser, Books idBook) {
         this.contentComment = contentComment;
         this.idUser = idUser;
         this.idBook = idBook;
@@ -26,19 +29,19 @@ public class CommentsDto {
         this.contentComment = contentComment;
     }
 
-    public UsersDto getIdUser() {
+    public Users getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(UsersDto idUser) {
+    public void setIdUser(Users idUser) {
         this.idUser = idUser;
     }
 
-    public BooksDto getIdBook() {
+    public Books getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(BooksDto idBook) {
+    public void setIdBook(Books idBook) {
         this.idBook = idBook;
     }
 }

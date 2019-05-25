@@ -1,24 +1,26 @@
 package com.example.demo.dto;
 
 
+import com.example.demo.dao.Books;
+import com.example.demo.dao.Users;
+
 import java.util.Date;
 
 
 public class ReserwationsDto {
 
     private Date dateReserwation;
-    private UsersDto idUser;
-    private BooksDto idBook;
+    private Users idUser;
+    private Books idBook;
 
     public ReserwationsDto() {
     }
 
-    public ReserwationsDto(Date dateReserwation, UsersDto idUser, BooksDto idBook) {
+    public ReserwationsDto(Date dateReserwation, Users idUser, Books idBook) {
         this.dateReserwation = dateReserwation;
         this.idUser = idUser;
         this.idBook = idBook;
     }
-
 
     public Date getDateReserwation() {
         return dateReserwation;
@@ -28,19 +30,19 @@ public class ReserwationsDto {
         this.dateReserwation = dateReserwation;
     }
 
-    public UsersDto getIdUser() {
+    public Users getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(UsersDto idUser) {
+    public void setIdUser(Users idUser) {
         this.idUser = idUser;
     }
 
-    public BooksDto getIdBook() {
+    public Books getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(BooksDto idBook) {
+    public void setIdBook(Books idBook) {
         this.idBook = idBook;
     }
 }

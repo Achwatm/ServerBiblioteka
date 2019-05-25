@@ -1,6 +1,9 @@
 package com.example.demo.dto;
 
 
+import com.example.demo.dao.Copy;
+import com.example.demo.dao.Users;
+
 import java.util.Date;
 
 public class LoanDto {
@@ -8,13 +11,13 @@ public class LoanDto {
 
     private Date dataLoan;
     private Date dataReturn;
-    private UsersDto idUser;
-    private CopyDto idCopy;
+    private Users idUser;
+    private Copy idCopy;
 
     public LoanDto() {
     }
 
-    public LoanDto(Date dataLoan, Date dataReturn, UsersDto idUser, CopyDto idCopy) {
+    public LoanDto(Date dataLoan, Date dataReturn, Users idUser, Copy idCopy) {
         this.dataLoan = dataLoan;
         this.dataReturn = dataReturn;
         this.idUser = idUser;
@@ -38,19 +41,19 @@ public class LoanDto {
         this.dataReturn = dataReturn;
     }
 
-    public UsersDto getIdUser() {
+    public Users getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(UsersDto idUser) {
+    public void setIdUser(Users idUser) {
         this.idUser = idUser;
     }
 
-    public CopyDto getIdCopy() {
+    public Copy getIdCopy() {
         return idCopy;
     }
 
-    public void setIdCopy(CopyDto idCopy) {
+    public void setIdCopy(Copy idCopy) {
         this.idCopy = idCopy;
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ReserwationsRepository extends JpaRepository<Reserwations,Integer> {
 
-    @Query(value = "SELECT * FROM public.reserwations",
+    @Query(value = "SELECT * FROM public.reservations",
             nativeQuery = true
     )
     List<Reserwations> showReservations();

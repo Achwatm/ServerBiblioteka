@@ -1,22 +1,24 @@
 package com.example.demo.dto;
 
 
+import com.example.demo.dao.Books;
+
 public class CopyDto {
 
-    private BooksDto idBook;
+    private Books idBook;
 
     public CopyDto() {
     }
 
-    public CopyDto(BooksDto idBook) {
+    public CopyDto(Books idBook) {
         this.idBook = idBook;
     }
 
-    public BooksDto getIdBook() {
+    public Books getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(BooksDto idBook) {
+    public void setIdBook(Books idBook) {
         this.idBook = idBook;
     }
 }
