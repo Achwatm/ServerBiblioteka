@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,6 +43,46 @@ public class BooksController {
     public List<Books> getBooks(){
 
         return booksRepository.showBooks();
+    }
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @RequestMapping(value ="/showBook/{id}",method = RequestMethod.GET)
+    public Books getBook(@PathVariable int id){
+        Books sbook = new Books();
+        int i = 0;
+        boolean confirm=false;
+        for (Books book : booksRepository.showBooks()) {
+            if (book.getIdBook().equals(id)) {
+               i=1;
+               sbook = book;
+               break;
+            }
+        }
+        if(i==1){
+            return sbook;
+        }
+        else
+            return null;
+
+    }
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @RequestMapping(value ="/comments/{id}",method = RequestMethod.GET)
+    public List<Comments> getComments(@PathVariable int id){
+        List<Comments> comments = new ArrayList<>();
+        int i = 0;
+        boolean confirm=false;
+        for (Comments comment : commentsRepository.showComments()) {
+            if (comment.getIdBook().getIdBook().equals(id)) {
+                confirm= true;
+                comments.add(comment);
+            }
+            i++;
+        }
+        if(confirm){
+            return comments;
+        }
+        else
+            return null;
+
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.dao.Books;
 import com.example.demo.dao.Users;
 import com.example.demo.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +16,16 @@ public class UsersController {
     @Autowired
     UsersRepository usersRepository;
 
+    public UsersController(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @RequestMapping(value ="/showUsers",method = RequestMethod.GET)
+    public List<Users> getBooks(){
+
+        return usersRepository.showUsers();
+    }
 
 
     //Add new user
