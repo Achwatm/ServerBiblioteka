@@ -3,10 +3,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.dao.*;
-import com.example.demo.dto.BooksDto;
-import com.example.demo.dto.CommentsDto;
-import com.example.demo.dto.LoanDto;
-import com.example.demo.dto.ReviewsDto;
+import com.example.demo.dto.*;
 import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,14 +25,16 @@ public class BooksController {
     ReviewsRepository reviewsRepository;
     CopyRepository copyRepository;
     LoanRepository loanRepository;
+    AuthorsRepository authorsRepository;
 
     @Autowired
-    public BooksController(BooksRepository booksRepository, CommentsRepository commentsRepository, ReviewsRepository reviewsRepository, CopyRepository copyRepository, LoanRepository loanRepository) {
+    public BooksController(BooksRepository booksRepository, CommentsRepository commentsRepository, ReviewsRepository reviewsRepository, CopyRepository copyRepository, LoanRepository loanRepository, AuthorsRepository authorsRepository) {
         this.booksRepository = booksRepository;
         this.commentsRepository = commentsRepository;
         this.reviewsRepository = reviewsRepository;
         this.copyRepository = copyRepository;
         this.loanRepository = loanRepository;
+        this.authorsRepository = authorsRepository;
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -88,7 +87,15 @@ public class BooksController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value ="/addBook",method = RequestMethod.POST)
     public ResponseEntity  addNewBook(@RequestBody final BooksDto booksDto){
-        Books book = new Books(booksDto.getTitle(),booksDto.getDescription(),booksDto.getType(),booksDto.getIdAuthor());
+       Authors author = new Authors();
+        boolean confirm=false;
+        for (Authors authors : authorsRepository.showAuthors()) {
+            if (authors.getIdAuthor().equals(booksDto.getIdAuthor())) {
+                author = authors;
+                break;
+            }
+        }
+        Books book = new Books(booksDto.getTitle(),booksDto.getDescription(),booksDto.getType(),author);
         booksRepository.save(book);
 
         return new ResponseEntity<>(HttpStatus.CREATED);

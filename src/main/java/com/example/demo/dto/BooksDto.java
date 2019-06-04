@@ -9,12 +9,12 @@ public class BooksDto {
     private String title;
     private String description;
     private String type;
-    private Authors idAuthor;
+    private Integer idAuthor;
 
     public BooksDto() {
     }
 
-    public BooksDto(String title, String description, String type, Authors idAuthor) {
+    public BooksDto(String title, String description, String type, Integer idAuthor) {
         this.title = title;
         this.description = description;
         this.type = type;
@@ -46,11 +46,11 @@ public class BooksDto {
         this.type = type;
     }
 
-    public Authors getIdAuthor() {
+    public Integer getIdAuthor() {
         return idAuthor;
     }
 
-    public void setIdAuthor(Authors idAuthor) {
+    public void setIdAuthor(Integer idAuthor) {
         this.idAuthor = idAuthor;
     }
 }
