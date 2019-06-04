@@ -7,13 +7,13 @@ public class ReviewsDto {
 
 
     private String contentReview;
-    private Users idUser;
-    private Books idBook;
+    private Integer idUser;
+    private Integer idBook;
 
     public ReviewsDto() {
     }
 
-    public ReviewsDto(String contentReview, Users idUser, Books idBook) {
+    public ReviewsDto(String contentReview, Integer idUser, Integer idBook) {
         this.contentReview = contentReview;
         this.idUser = idUser;
         this.idBook = idBook;
@@ -28,19 +28,19 @@ public class ReviewsDto {
         this.contentReview = contentReview;
     }
 
-    public Users getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Users idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
-    public Books getIdBook() {
+    public Integer getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(Books idBook) {
+    public void setIdBook(Integer idBook) {
         this.idBook = idBook;
     }
 }
