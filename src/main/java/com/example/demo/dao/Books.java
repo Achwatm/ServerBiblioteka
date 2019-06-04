@@ -1,9 +1,14 @@
 package com.example.demo.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "books",schema = "public")
+
 
 public class Books {
 
@@ -17,7 +22,8 @@ public class Books {
     private String description;
     @Column(name = "type")
     private String type;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+//    @JsonIgnore
     @JoinColumn(name = "id_author")
     private Authors idAuthor;
 

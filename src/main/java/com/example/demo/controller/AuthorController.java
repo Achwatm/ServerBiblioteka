@@ -29,7 +29,7 @@ public class AuthorController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @RequestMapping(value ="/addAuthor",method = RequestMethod.POST)
+    @RequestMapping(value ="/addAuthors",method = RequestMethod.POST)
     public ResponseEntity  addNewBook(@RequestBody final AuthorsDto authorsDto){
         Authors book = new Authors(authorsDto.getName(),authorsDto.getLastName());
         authorsRepository.save(book);

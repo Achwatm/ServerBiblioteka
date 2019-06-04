@@ -1,6 +1,10 @@
 package com.example.demo.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.javafx.geom.Edge;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "authors",schema = "public")
@@ -15,6 +19,20 @@ public class Authors {
     private String name;
     @Column(name = "last_name")
     private String lastName;
+
+
+    public List<Books> getBooks() {
+        return books;
+    }
+
+//    public void setBooks(List<Books> books) {
+//        this.books = books;
+//    }
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinColumn(name = "id_author")
+    private List<Books> books;
 
     public Authors() {
     }
