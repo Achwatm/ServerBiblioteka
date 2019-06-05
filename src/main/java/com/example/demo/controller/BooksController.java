@@ -27,15 +27,37 @@ public class BooksController {
     private CopyRepository copyRepository;
     private LoanRepository loanRepository;
     private AuthorsRepository authorsRepository;
+    private UsersRepository usersRepository;
 
     @Autowired
-    public BooksController(BooksRepository booksRepository, CommentsRepository commentsRepository, ReviewsRepository reviewsRepository, CopyRepository copyRepository, LoanRepository loanRepository, AuthorsRepository authorsRepository) {
+    public BooksController(BooksRepository booksRepository, CommentsRepository commentsRepository, ReviewsRepository reviewsRepository, CopyRepository copyRepository, LoanRepository loanRepository, AuthorsRepository authorsRepository, UsersRepository usersRepository) {
         this.booksRepository = booksRepository;
         this.commentsRepository = commentsRepository;
         this.reviewsRepository = reviewsRepository;
         this.copyRepository = copyRepository;
         this.loanRepository = loanRepository;
         this.authorsRepository = authorsRepository;
+        this.usersRepository = usersRepository;
+    }
+    public Users user(int id){
+        Users user = new Users();
+        for (Users users : usersRepository.showUsers()) {
+            if (users.getIdUser().equals(id)) {
+                user = users;
+                break;
+            }
+        }
+        return user;
+    }
+    public Books book(int id){
+        Books book = new Books();
+        for (Books books : booksRepository.showBooks()) {
+            if (books.getIdBook().equals(id)) {
+                book = books;
+                break;
+            }
+        }
+        return book;
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -88,14 +110,15 @@ public class BooksController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value ="/addBooks",method = RequestMethod.POST)
     public ResponseEntity  addNewBook(@RequestBody final BooksDto booksDto){
-//        Books book = new Books(booksDto.getTitle(),booksDto.getDescription(),booksDto.getType(),booksDto.getIdAuthor());
-//        booksRepository.save(book);
-        Books books = new Books();
-        books.setDescription(booksDto.getDescription());
-        books.setTitle(booksDto.getTitle());
-        books.setType(booksDto.getType());
-        books.setIdAuthor(booksDto.getIdAuthor());
-        booksRepository.save(books);
+        Authors author = new Authors();
+        for (Authors authors : authorsRepository.showAuthors()) {
+            if (authors.getIdAuthor().equals(booksDto.getIdAuthor())) {
+                author = authors;
+                break;
+            }
+        }
+        Books book = new Books(booksDto.getTitle(),booksDto.getDescription(),booksDto.getType(),author);
+        booksRepository.save(book);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -128,7 +151,7 @@ public class BooksController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value ="/addComment",method = RequestMethod.POST)
     public ResponseEntity  addComment(@RequestBody final CommentsDto commentsDto){
-        Comments comment = new Comments(commentsDto.getContentComment(),commentsDto.getIdUser(),commentsDto.getIdBook());
+        Comments comment = new Comments(commentsDto.getContentComment(),user(commentsDto.getIdUser()),book(commentsDto.getIdBook()));
         commentsRepository.save(comment);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -144,7 +167,7 @@ public class BooksController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value ="/addReview",method = RequestMethod.POST)
     public ResponseEntity  addReview(@RequestBody final ReviewsDto reviewsDto){
-        Reviews review = new Reviews(reviewsDto.getContentReview(),reviewsDto.getIdUser(),reviewsDto.getIdBook());
+        Reviews review = new Reviews(reviewsDto.getContentReview(),user(reviewsDto.getIdUser()),book(reviewsDto.getIdBook()));
         reviewsRepository.save(review);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
