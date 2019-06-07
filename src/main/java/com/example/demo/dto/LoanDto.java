@@ -11,13 +11,13 @@ public class LoanDto {
 
     private Date dataLoan;
     private Date dataReturn;
-    private Users idUser;
-    private Copy idCopy;
+    private Integer idUser;
+    private Integer idCopy;
 
     public LoanDto() {
     }
 
-    public LoanDto(Date dataLoan, Date dataReturn, Users idUser, Copy idCopy) {
+    public LoanDto(Date dataLoan, Date dataReturn, Integer idUser, Integer idCopy) {
         this.dataLoan = dataLoan;
         this.dataReturn = dataReturn;
         this.idUser = idUser;
@@ -41,19 +41,19 @@ public class LoanDto {
         this.dataReturn = dataReturn;
     }
 
-    public Users getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Users idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
-    public Copy getIdCopy() {
+    public Integer getIdCopy() {
         return idCopy;
     }
 
-    public void setIdCopy(Copy idCopy) {
+    public void setIdCopy(Integer idCopy) {
         this.idCopy = idCopy;
     }
 }

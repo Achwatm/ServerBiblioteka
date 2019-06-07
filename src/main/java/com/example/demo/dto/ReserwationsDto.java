@@ -10,13 +10,13 @@ import java.util.Date;
 public class ReserwationsDto {
 
     private Date dateReserwation;
-    private Users idUser;
-    private Books idBook;
+    private Integer idUser;
+    private Integer idBook;
 
     public ReserwationsDto() {
     }
 
-    public ReserwationsDto(Date dateReserwation, Users idUser, Books idBook) {
+    public ReserwationsDto(Date dateReserwation, Integer idUser, Integer idBook) {
         this.dateReserwation = dateReserwation;
         this.idUser = idUser;
         this.idBook = idBook;
@@ -30,19 +30,19 @@ public class ReserwationsDto {
         this.dateReserwation = dateReserwation;
     }
 
-    public Users getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Users idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
-    public Books getIdBook() {
+    public Integer getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(Books idBook) {
+    public void setIdBook(Integer idBook) {
         this.idBook = idBook;
     }
 }

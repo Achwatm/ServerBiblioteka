@@ -5,20 +5,20 @@ import com.example.demo.dao.Books;
 
 public class CopyDto {
 
-    private Books idBook;
+    private Integer idBook;
 
     public CopyDto() {
     }
 
-    public CopyDto(Books idBook) {
+    public CopyDto(Integer idBook) {
         this.idBook = idBook;
     }
 
-    public Books getIdBook() {
+    public Integer getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(Books idBook) {
+    public void setIdBook(Integer idBook) {
         this.idBook = idBook;
     }
 }

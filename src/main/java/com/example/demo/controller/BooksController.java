@@ -59,6 +59,16 @@ public class BooksController {
         }
         return book;
     }
+    public Copy copy(int id){
+        Copy copy = new Copy();
+        for (Copy copys : copyRepository.showCopy()) {
+            if (copys.getIdCopy().equals(id)) {
+                copy = copys;
+                break;
+            }
+        }
+        return copy;
+    }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value ="/showBooks",method = RequestMethod.GET)
@@ -179,6 +189,14 @@ public class BooksController {
 
         return copyRepository.showCopy();
     }
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @RequestMapping(value ="/addCopy",method = RequestMethod.POST)
+    public ResponseEntity  addCopy(@RequestBody final CopyDto copyDto){
+        Copy copy = new Copy(book(copyDto.getIdBook()));
+        copyRepository.save(copy);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value ="/showLoan",method = RequestMethod.GET)
@@ -190,7 +208,7 @@ public class BooksController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value ="/loanBook",method = RequestMethod.POST)
     public ResponseEntity  loanBook(@RequestBody final LoanDto loanDto){
-        Loan loan = new Loan(loanDto.getDataLoan(), loanDto.getDataReturn(), loanDto.getIdUser(), loanDto.getIdCopy());
+        Loan loan = new Loan(loanDto.getDataLoan(), loanDto.getDataReturn(), user(loanDto.getIdUser()), copy(loanDto.getIdCopy()));
         loanRepository.save(loan);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
